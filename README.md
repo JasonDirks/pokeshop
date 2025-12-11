@@ -30,4 +30,4 @@
   - `+` / `−` buttons to adjust quantity per item.
   - Overall item count and total price.
 - Global nav shows a live bag count on every page.
-- “Clear bag” button and a “Checkout (demo)” action to simulate flow.
+- “Clear bag” button and a “Checkout (demo)” action to simulate flow. 
