@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "./CartContext";
+import NavBar from "./NavBar";
 
 export const metadata: Metadata = {
   title: "Mini PokéShop",
@@ -14,8 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <CartProvider>{children}</CartProvider>
+      <body
+        style={{
+          margin: 0,
+          backgroundColor: "#f4f4f5",
+        }}
+      >
+        <CartProvider>
+          <NavBar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );
