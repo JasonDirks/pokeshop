@@ -1,66 +1,58 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// app/page.tsx
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main
+      style={{
+        minHeight: "100vh",
+        padding: "2rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily:
+          "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        backgroundColor: "#f4f4f5",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "600px",
+          backgroundColor: "white",
+          borderRadius: "12px",
+          padding: "2rem",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h1 style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>
+          Mini PokéShop
+        </h1>
+        <p style={{ marginBottom: "1rem", color: "#555" }}>
+          A tiny Pokémon-themed storefront demo built with Next.js and
+          TypeScript.
+        </p>
+        <p style={{ marginBottom: "2rem", color: "#555" }}>
+          Browse a small set of products and try out search &amp; filtering —
+          just like a miniature version of a Pokémon Center eCommerce
+          experience.
+        </p>
+
+        <Link
+          href="/products"
+          style={{
+            display: "inline-block",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "999px",
+            textDecoration: "none",
+            backgroundColor: "#e11d48",
+            color: "white",
+            fontWeight: 600,
+          }}
+        >
+          Go to Products
+        </Link>
+      </div>
+    </main>
   );
 }
+
