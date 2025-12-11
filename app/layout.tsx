@@ -1,10 +1,10 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import { CartProvider } from "./CartContext";
 
 export const metadata: Metadata = {
   title: "Mini PokéShop",
-  description: "Tiny Pokémon-themed storefront demo built with Next.js and TypeScript.",
+  description: "A tiny Pokémon-themed demo storefront",
 };
 
 export default function RootLayout({
@@ -14,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }
