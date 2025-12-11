@@ -385,18 +385,6 @@ export default function ProductsPage() {
                 >
                   Clear bag
                 </button>
-                {/* Tiny hint: remove 1 Pikachu, etc. */}
-                <p
-                  style={{
-                    color: "#a1a1aa",
-                    fontSize: "0.75rem",
-                    maxWidth: "160px",
-                  }}
-                >
-                  To remove a single item, click "Add to bag" fewer times next
-                  time – in a real app this would be a full cart page with
-                  quantity controls.
-                </p>
               </div>
             )}
           </div>
