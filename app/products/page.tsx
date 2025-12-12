@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { PRODUCTS, Product, Category } from "../../lib/products";
 import { useCart } from "../CartContext";
+import styles from "./ProductsPage.module.css";
 
 type ViewMode = "all" | "favourites";
 
@@ -16,91 +17,37 @@ function ProductCard(props: {
 }) {
   const { product, isFavourite, onToggleFavourite, onAddToCart } = props;
 
+  const favouriteClassName = isFavourite
+    ? `${styles.favouriteButton} ${styles.favouriteButtonActive}`
+    : styles.favouriteButton;
+
   return (
-    <article
-      style={{
-        backgroundColor: "white",
-        borderRadius: "12px",
-        padding: "1rem",
-        boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        gap: "0.5rem",
-      }}
-    >
+    <article className={styles.card}>
       <div>
-        <h2
-          style={{
-            fontSize: "1.1rem",
-            marginBottom: "0.25rem",
-          }}
-        >
-          <Link
-            href={`/products/${product.id}`}
-            style={{ textDecoration: "none", color: "#111827" }}
-          >
+        <h2 className={styles.cardTitle}>
+          <Link href={`/products/${product.id}`} className={styles.cardLink}>
             {product.name}
           </Link>
         </h2>
-        <p
-          style={{
-            color: "#71717a",
-            fontSize: "0.9rem",
-            marginBottom: "0.25rem",
-          }}
-        >
-          Category: {product.category}
-        </p>
-        <p
-          style={{
-            color: "#6b7280",
-            fontSize: "0.85rem",
-          }}
-        >
-          {product.description}
-        </p>
+        <p className={styles.cardCategory}>Category: {product.category}</p>
+        <p className={styles.cardDescription}>{product.description}</p>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: "0.5rem",
-          gap: "0.5rem",
-        }}
-      >
-        <span style={{ fontWeight: 600 }}>£{product.price.toFixed(2)}</span>
-        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+      <div className={styles.cardFooter}>
+        <span className={styles.cardPrice}>
+          £{product.price.toFixed(2)}
+        </span>
+        <div className={styles.cardActions}>
           <button
             type="button"
             onClick={onToggleFavourite}
-            style={{
-              padding: "0.25rem 0.6rem",
-              borderRadius: "999px",
-              border: "1px solid #e11d48",
-              backgroundColor: isFavourite ? "#e11d48" : "white",
-              color: isFavourite ? "white" : "#e11d48",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
+            className={favouriteClassName}
           >
             {isFavourite ? "♥ Favourited" : "♡ Favourite"}
           </button>
           <button
             type="button"
             onClick={onAddToCart}
-            style={{
-              padding: "0.4rem 0.9rem",
-              borderRadius: "999px",
-              border: "none",
-              backgroundColor: "#e11d48",
-              color: "white",
-              fontSize: "0.85rem",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
+            className={`${styles.addButton} button-pill button-primary`}
           >
             Add to bag
           </button>
@@ -123,13 +70,7 @@ function ProductGrid(props: {
   }
 
   return (
-    <section
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-        gap: "1rem",
-      }}
-    >
+    <section className={styles.grid}>
       {products.map((product) => (
         <ProductCard
           key={product.id}
@@ -151,7 +92,7 @@ export default function ProductsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("all");
   const [favouriteIds, setFavouriteIds] = useState<Set<number>>(new Set());
 
-  const { cart, addToCart, removeFromCart, clearCart } = useCart();
+  const { cart, addToCart, clearCart } = useCart();
 
   // Load favourites from localStorage once on mount
   useEffect(() => {
@@ -219,10 +160,6 @@ export default function ProductsPage() {
     addToCart(id);
   };
 
-  const handleRemoveFromCart = (id: number) => {
-    removeFromCart(id);
-  };
-
   const cartItems = useMemo(() => {
     const items: { product: Product; quantity: number }[] = [];
 
@@ -246,114 +183,50 @@ export default function ProductsPage() {
   );
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        padding: "2rem",
-        fontFamily:
-          "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        backgroundColor: "#f4f4f5",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "960px",
-          margin: "0 auto",
-        }}
-      >
-        <header
-          style={{
-            marginBottom: "1.5rem",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "1rem",
-          }}
-        >
+    <main className="app-page">
+      <div className="app-page-inner">
+        <header className={styles.header}>
           <div>
-            <h1 style={{ fontSize: "1.75rem", marginBottom: "0.25rem" }}>
-              Products
-            </h1>
-            <p style={{ color: "#555" }}>
+            <h1 className={styles.headerTitle}>Products</h1>
+            <p className={styles.headerSubtitle}>
               Search by name, category, or description. Mark favourites to come
               back to later.
             </p>
           </div>
 
-          <Link
-            href="/"
-            style={{
-              textDecoration: "none",
-              color: "#e11d48",
-              fontWeight: 600,
-            }}
-          >
+          <Link href="/" className={styles.backLink}>
             ⬅ Back home
           </Link>
         </header>
 
         {/* Cart summary */}
-        <section
-          style={{
-            marginBottom: "1.5rem",
-            padding: "0.75rem 1rem",
-            borderRadius: "12px",
-            backgroundColor: "white",
-            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.04)",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              gap: "1rem",
-            }}
-          >
-            <div style={{ flex: "1 1 auto" }}>
-              <h2
-                style={{
-                  fontSize: "1rem",
-                  marginBottom: "0.25rem",
-                }}
-              >
-                Your bag
-              </h2>
+        <section className={styles.cartSection}>
+          <div className={styles.cartHeader}>
+            <div>
+              <h2 className={styles.cartTitle}>Your bag</h2>
               {cartItems.length === 0 ? (
-                <p style={{ color: "#71717a", fontSize: "0.9rem" }}>
+                <p className={styles.cartTextEmpty}>
                   Your bag is empty. Add something you like!
                 </p>
               ) : (
                 <>
-                  <p style={{ color: "#111827", fontSize: "0.9rem" }}>
+                  <p className={styles.cartText}>
                     {cartTotalItems} item
                     {cartTotalItems !== 1 ? "s" : ""} · Total: £
                     {cartTotalPrice.toFixed(2)}
                   </p>
-                  <ul
-                    style={{
-                      listStyle: "none",
-                      padding: 0,
-                      marginTop: "0.5rem",
-                      marginBottom: 0,
-                    }}
-                  >
+                  <ul className={styles.cartList}>
                     {cartItems.map(({ product, quantity }) => (
                       <li
                         key={product.id}
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                          fontSize: "0.85rem",
-                          padding: "0.25rem 0",
-                        }}
+                        className={styles.cartListItem}
                       >
-                        <span>
+                        <span className={styles.cartItemName}>
                           {product.name} × {quantity}
                         </span>
-                        <span>£{(product.price * quantity).toFixed(2)}</span>
+                        <span className={styles.cartItemPrice}>
+                          £{(product.price * quantity).toFixed(2)}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -362,26 +235,11 @@ export default function ProductsPage() {
             </div>
 
             {cartItems.length > 0 && (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                }}
-              >
+              <div className={styles.clearButtonWrapper}>
                 <button
                   type="button"
                   onClick={clearCart}
-                  style={{
-                    padding: "0.35rem 0.8rem",
-                    borderRadius: "999px",
-                    border: "1px solid #e11d48",
-                    backgroundColor: "white",
-                    color: "#e11d48",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                  }}
+                  className={`${styles.clearButton} button-pill button-outline`}
                 >
                   Clear bag
                 </button>
@@ -391,28 +249,13 @@ export default function ProductsPage() {
         </section>
 
         {/* Controls */}
-        <section
-          style={{
-            marginBottom: "1.5rem",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.75rem",
-            alignItems: "center",
-          }}
-        >
+        <section className={styles.controls}>
           <input
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search products..."
-            style={{
-              flex: "1 1 220px",
-              maxWidth: "320px",
-              padding: "0.5rem 0.75rem",
-              borderRadius: "999px",
-              border: "1px solid #d4d4d8",
-              outline: "none",
-            }}
+            className={styles.searchInput}
           />
           <select
             value={categoryFilter}
@@ -423,12 +266,7 @@ export default function ProductsPage() {
                   : (event.target.value as Category)
               )
             }
-            style={{
-              padding: "0.5rem 0.75rem",
-              borderRadius: "999px",
-              border: "1px solid #d4d4d8",
-              outline: "none",
-            }}
+            className={styles.categorySelect}
           >
             <option value="All">All categories</option>
             {ALL_CATEGORIES.map((category) => (
@@ -437,42 +275,26 @@ export default function ProductsPage() {
               </option>
             ))}
           </select>
-          <div
-            style={{
-              display: "inline-flex",
-              borderRadius: "999px",
-              border: "1px solid #d4d4d8",
-              overflow: "hidden",
-            }}
-          >
+          <div className={styles.viewToggleGroup}>
             <button
               type="button"
               onClick={() => setViewMode("all")}
-              style={{
-                padding: "0.4rem 0.8rem",
-                border: "none",
-                backgroundColor: viewMode === "all" ? "#e11d48" : "white",
-                color: viewMode === "all" ? "white" : "#111827",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
+              className={
+                viewMode === "all"
+                  ? styles.viewToggleButtonActive
+                  : styles.viewToggleButton
+              }
             >
               All
             </button>
             <button
               type="button"
               onClick={() => setViewMode("favourites")}
-              style={{
-                padding: "0.4rem 0.8rem",
-                border: "none",
-                backgroundColor:
-                  viewMode === "favourites" ? "#e11d48" : "white",
-                color: viewMode === "favourites" ? "white" : "#111827",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
+              className={
+                viewMode === "favourites"
+                  ? styles.viewToggleButtonActive
+                  : styles.viewToggleButton
+              }
             >
               Favourites
             </button>
