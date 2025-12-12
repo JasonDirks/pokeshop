@@ -6,6 +6,7 @@ import Link from "next/link";
 import { PRODUCTS, Product, Category } from "../../lib/products";
 import { useCart } from "../CartContext";
 import styles from "./ProductsPage.module.css";
+import { filterProducts } from "../../lib/productFilters";
 
 type ViewMode = "all" | "favourites";
 
@@ -115,34 +116,14 @@ export default function ProductsPage() {
     );
   }, [favouriteIds]);
 
-  const normalizedQuery = query.toLowerCase().trim();
-
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
-      if (categoryFilter !== "All" && product.category !== categoryFilter) {
-        return false;
-      }
-
-      if (normalizedQuery) {
-        const inName = product.name.toLowerCase().includes(normalizedQuery);
-        const inCategory = product.category
-          .toLowerCase()
-          .includes(normalizedQuery);
-        const inDescription = product.description
-          .toLowerCase()
-          .includes(normalizedQuery);
-        if (!inName && !inCategory && !inDescription) {
-          return false;
-        }
-      }
-
-      if (viewMode === "favourites" && !favouriteIds.has(product.id)) {
-        return false;
-      }
-
-      return true;
+    return filterProducts(PRODUCTS, {
+      query,
+      categoryFilter,
+      viewMode,
+      favouriteIds,
     });
-  }, [categoryFilter, favouriteIds, normalizedQuery, viewMode]);
+  }, [query, categoryFilter, viewMode, favouriteIds]);
 
   const handleToggleFavourite = (id: number) => {
     setFavouriteIds((prev) => {
