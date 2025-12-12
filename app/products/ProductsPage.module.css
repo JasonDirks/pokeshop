@@ -151,9 +151,33 @@
 /* Grid & cards */
 
 .grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
+  z-index: 1; /* sit above pattern background */
+}
+.gridSection {
+  position: relative;
+  margin-top: 0.5rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: 20px;
+  background: radial-gradient(circle at top left, #fee2e2 0, #fdf2f8 30%, #eef2ff 100%);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.15);
+  overflow: hidden;
+}
+
+/* subtle dotted pattern overlay */
+.gridSection::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .card {

@@ -283,12 +283,14 @@ export default function ProductsPage() {
         </section>
 
         {/* Grid */}
-        <ProductGrid
-          products={filteredProducts}
-          favouriteIds={favouriteIds}
-          onToggleFavourite={handleToggleFavourite}
-          onAddToCart={handleAddToCart}
-        />
+        <section className={styles.gridSection}>
+          <ProductGrid
+            products={filteredProducts}
+            favouriteIds={favouriteIds}
+            onToggleFavourite={handleToggleFavourite}
+            onAddToCart={handleAddToCart}
+          />
+        </section>
       </div>
     </main>
   );
