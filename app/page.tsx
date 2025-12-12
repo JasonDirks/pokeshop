@@ -107,107 +107,119 @@ export default function HomePage() {
             them to your bag.
           </p>
 
+          {/* Gradient strip wrapper */}
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-              gap: "1rem",
+              borderRadius: "20px",
+              padding: "1.5rem 1.25rem",
+              background:
+                "radial-gradient(circle at top left, #fee2e2 0, #fdf2f8 30%, #eef2ff 100%)",
+              boxShadow: "0 18px 40px rgba(15, 23, 42, 0.15)",
             }}
           >
             <div
               style={{
-                borderRadius: "12px",
-                padding: "1rem",
-                backgroundColor: "#ffffff",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.25rem",
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fit, minmax(180px, 1fr))",
+                gap: "1rem",
               }}
             >
-              <span style={{ fontSize: "1.4rem" }}>🧸</span>
-              <h3
+              <div
                 style={{
-                  margin: "0.25rem 0",
-                  fontSize: "1rem",
+                  borderRadius: "12px",
+                  padding: "1rem",
+                  backgroundColor: "#ffffff",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.25rem",
                 }}
               >
-                Plush & friends
-              </h3>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "0.85rem",
-                  color: "#6b7280",
-                }}
-              >
-                Soft companions for your desk or sofa. Try favouriting a few to
-                find them again quickly.
-              </p>
-            </div>
+                <span style={{ fontSize: "1.4rem" }}>🧸</span>
+                <h3
+                  style={{
+                    margin: "0.25rem 0",
+                    fontSize: "1rem",
+                  }}
+                >
+                  Plush & friends
+                </h3>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: "0.85rem",
+                    color: "#6b7280",
+                  }}
+                >
+                  Soft companions for your desk or sofa. Try favouriting a few
+                  to find them again quickly.
+                </p>
+              </div>
 
-            <div
-              style={{
-                borderRadius: "12px",
-                padding: "1rem",
-                backgroundColor: "#ffffff",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.25rem",
-              }}
-            >
-              <span style={{ fontSize: "1.4rem" }}>👕</span>
-              <h3
+              <div
                 style={{
-                  margin: "0.25rem 0",
-                  fontSize: "1rem",
+                  borderRadius: "12px",
+                  padding: "1rem",
+                  backgroundColor: "#ffffff",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.25rem",
                 }}
               >
-                Apparel
-              </h3>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "0.85rem",
-                  color: "#6b7280",
-                }}
-              >
-                Tees and hoodies to show off your favourite Pokémon — filter by
-                category on the products page.
-              </p>
-            </div>
+                <span style={{ fontSize: "1.4rem" }}>👕</span>
+                <h3
+                  style={{
+                    margin: "0.25rem 0",
+                    fontSize: "1rem",
+                  }}
+                >
+                  Apparel
+                </h3>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: "0.85rem",
+                    color: "#6b7280",
+                  }}
+                >
+                  Tees and hoodies to show off your favourite Pokémon — filter by
+                  category on the products page.
+                </p>
+              </div>
 
-            <div
-              style={{
-                borderRadius: "12px",
-                padding: "1rem",
-                backgroundColor: "#ffffff",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.25rem",
-              }}
-            >
-              <span style={{ fontSize: "1.4rem" }}>🏠</span>
-              <h3
+              <div
                 style={{
-                  margin: "0.25rem 0",
-                  fontSize: "1rem",
+                  borderRadius: "12px",
+                  padding: "1rem",
+                  backgroundColor: "#ffffff",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.25rem",
                 }}
               >
-                Home & desk
-              </h3>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "0.85rem",
-                  color: "#6b7280",
-                }}
-              >
-                Small touches that bring the world of Pokémon into your everyday
-                space.
-              </p>
+                <span style={{ fontSize: "1.4rem" }}>🏠</span>
+                <h3
+                  style={{
+                    margin: "0.25rem 0",
+                    fontSize: "1rem",
+                  }}
+                >
+                  Home & desk
+                </h3>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: "0.85rem",
+                    color: "#6b7280",
+                  }}
+                >
+                  Small touches that bring the world of Pokémon into your
+                  everyday space.
+                </p>
+              </div>
             </div>
           </div>
         </section>
